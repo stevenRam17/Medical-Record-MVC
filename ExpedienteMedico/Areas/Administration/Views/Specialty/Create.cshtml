@@ -1,0 +1,17 @@
+﻿@model Specialty
+
+<form method="post">
+    <h2 class="text-primary p-1">Create new Specialty</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-controller="Specialty" asp-action="Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>

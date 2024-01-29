@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MedicalNote>
+
+
+<partial name="_Notifications"></partial> <!--Toaster notifications-->
+
+<div class="container p-3"> 
+    <div class="row pt-4"> 
+        <div class="col-6">
+            <h2 class="text-decoration">Medical Note List</h2>
+        </div>
+
+        <div class="col-6 text-end p-1">
+            <a asp-controller="MedicalNote" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i>
+                Create new medical note
+            </a>
+        </div>
+
+    </div>
+    <br>    
+
+    <table id="tblDataNote" class ="table table-bordered" style="width:100%">
+        <thead>
+        <tr>
+            <th>Note</th>
+            <th>Note Date</th>
+            <th>Physician</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </table>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/js/JsMedicalNote.js"></script>
+}

@@ -1,0 +1,35 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ExpedienteMedico.Models.ViewModels.SufferingVM
+
+<form method="post">
+    <input asp-for="@Model.HistoryId" hidden />
+    <h2 class="text-primary p-1">Create new Suffering</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.Suffering.Name"></label>
+            <input asp-for="@Model.Suffering.Name" class="form-control">
+            <span asp-validation-for="@Model.Suffering.Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model.Suffering.Description"></label>
+            <textarea asp-for="@Model.Suffering.Description" rows="3" class="form-control"></textarea>
+            <span asp-validation-for="@Model.Suffering.Description" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-controller="Suffering" asp-action="Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>
+
+<script src="https://cdn.tiny.cloud/1/15ppzj17t7o6klw3o2ryc501mp6jdbk1079w8wuxbsupg3u3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
+</script>

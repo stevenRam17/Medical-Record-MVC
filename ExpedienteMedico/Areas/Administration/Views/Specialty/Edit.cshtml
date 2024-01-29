@@ -1,0 +1,25 @@
+﻿
+@model Specialty
+
+<form method="post" asp-action="Edit" a>
+    <h2 class="text-decoration p-1">Edit current specialty</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3" hidden>
+            <label asp-for="Id"></label>
+            <input asp-for="Id" class="form-control">
+        </div>
+
+
+        <button type="submit" class="btn btn-dark">Edit</button>
+
+        <a asp-controller="Specialty" asp-action="Index" class="btn btn-dark">Back to list</a>
+    </div>
+</form>

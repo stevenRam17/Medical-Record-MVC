@@ -1,0 +1,67 @@
+﻿@model ExpedienteMedico.Models.ViewModels.MedicalImageVM
+
+
+<partial name="_Notifications"></partial>
+
+<form method="post" enctype="multipart/form-data">
+
+    <input asp-for="Image.Id" hidden/>
+    <input asp-for="Image.MedicalHistoryId" hidden/>
+    <input asp-for="Image.PhysicianId" hidden/>
+
+    <h2 class="text-primary p-1">Add new medical image</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+        
+        <div asp-validation-summary="All"></div>
+
+        <div class="mb-3">
+            <label asp-for="Image.Description"></label>
+            <textarea asp-for="Image.Description" class="form-control text-dark"></textarea>
+            <span asp-validation-for="Image.Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-6">
+            <label asp-for="Image.ImageUrl"></label>
+            <input id="uploadBox" type="file" name="file" class="form-control" />
+            <span asp-validation-for="Image.ImageUrl" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3 col-6">
+            <label asp-for="Image.PdfUrl"></label>
+            <input type="file" name="filePdf" class="form-control" />
+            <span asp-validation-for="Image.PdfUrl" class="text-danger"></span>
+        </div>
+
+        <button type="submit" onclick="return ValidateInput()" class="btn btn-primary">Add</button>
+
+        <a asp-controller="MedicalImage" asp-action="Index" class="btn btn-secondary">Back to list</a>
+
+    </div>
+</form>
+
+<script src="https://cdn.tiny.cloud/1/15ppzj17t7o6klw3o2ryc501mp6jdbk1079w8wuxbsupg3u3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+      toolbar_mode: 'floating',
+    });
+  </script>
+
+<script>
+    function ValidateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Uploading an image is a requirement!'
+            });
+            return false;
+        }
+        return true;
+    }
+
+</script>
+

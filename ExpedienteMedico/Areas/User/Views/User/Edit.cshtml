@@ -1,0 +1,50 @@
+﻿@model User
+
+
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+
+    <input asp-for="Id" hidden />
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+
+                <div asp-validation-summary="All"></div>
+
+                <div class="mb-3">
+                    <label asp-for="CompleteName"></label>
+                    <input asp-for="CompleteName" class="form-control" />
+                    <span asp-validation-for="CompleteName" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label asp-for="UserId"></label>
+                    <input asp-for="UserId" rows="3" class="form-control">
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 col-6">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" rows="3" class="form-control">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" asp-items="@Model.PhoneNumber" class="form-control">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 150px">Update</button>
+
+                <a asp-controller="User" asp-action="Index" class="btn btn-secondary" style="width: 150px">
+                    Back to list
+                </a>
+
+            </div>
+        </div>
+    </div>
+
+
+</form>

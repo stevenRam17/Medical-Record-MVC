@@ -1,0 +1,24 @@
+﻿@model MedicalImage
+
+<form method="post" asp-action="Edit" a>
+    <h2 class="text-decoration p-1">Edit current Medicine</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control">
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-3" hidden>
+            <label asp-for="Id"></label>
+            <input asp-for="Id" class="form-control">
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+
+        <a asp-controller="MedicalImage" asp-action="Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>

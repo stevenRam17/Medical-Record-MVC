@@ -1,0 +1,42 @@
+﻿@model ExpedienteMedico.Models.ViewModels.MedicalNoteVM
+@{
+    DateTime currentDate = DateTime.Now;
+}
+<form method="post">
+    
+    <input asp-for="Note.Id" hidden/>
+    <input asp-for="Note.MedicalHistoryId" hidden/>
+    <input asp-for="Note.PhysicianId" hidden/>
+    
+    
+    <h2 class="text-primary p-1">Create new Medical Note</h2>
+    <div class="border p-2 mt-3">
+        <div class="row pb-1"></div>
+        
+
+        <div class="mb-3">
+            <label asp-for="Note.Note"></label>
+            <textarea asp-for="Note.Note" class="form-control"></textarea>
+            <span asp-validation-for="Note.Note" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Note.NoteDate"></label>
+            <input asp-for="Note.NoteDate" type="datetime" class="form-control" value="@currentDate" readonly/>
+            <span asp-validation-for="Note.NoteDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a asp-controller="Medicine" asp-action="Index" class="btn btn-secondary">Back to list</a>
+    </div>
+</form>
+
+<script src="https://cdn.tiny.cloud/1/15ppzj17t7o6klw3o2ryc501mp6jdbk1079w8wuxbsupg3u3/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+  
+<script>
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'advlist autolink lists link image charmap preview anchor pagebreak',
+        toolbar_mode: 'floating',
+    });
+</script>

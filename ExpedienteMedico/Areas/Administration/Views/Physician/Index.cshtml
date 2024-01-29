@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Physician>
+
+<partial name="_Notifications"></partial>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Physician List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Physician" asp-action="Upsert" class="btn btn-dark">
+                <i class="bi bi-plus-circle"></i>
+                &nbsp; Create new Physician
+            </a>
+        </div>
+    </div>
+
+    <br />
+
+    <table id="tblDataPhy" style="width=100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>College Number</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Specialties</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/JsPhysician.js"></script>
+}
+
+

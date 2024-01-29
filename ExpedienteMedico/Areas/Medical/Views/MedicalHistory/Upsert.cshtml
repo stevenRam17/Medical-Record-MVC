@@ -1,0 +1,249 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@model MedicalHistory
+
+<partial name="_Notifications"></partial>
+
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+    <input asp-for="UserId" hidden />
+
+    <div class="row">
+        <div class="col-10">
+            <div class="border p-3 mt-4 row">
+
+                <div class="col-12 pb-2">
+                    <h2 class="text-primary text-center">@(Model.UserId == null ? "Create" : "Update") Physician</h2><hr />
+                </div>
+
+                <div asp-validation-summary="All"></div>
+                <br />
+                <label class="form-label text-black">Treatments</label>
+                <br /><br />
+                <div class="text-info">
+                    @for (int i = 0; i < @Model.MedicalHistoryTreatments.Count(); i++)
+                    {
+                        <table class="table table-stripped table-sm table-info text-info" style="width=100%">
+                            <thead class="text-dark">
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        Description
+                                    </td>
+                                    <td>
+                                        Physician name
+                                    </td>
+                                    
+                                    <td>
+                                        Is Suspended
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryTreatments.ElementAt(i).Treatments.Name)
+                                </td>
+                                <td width=25%>
+                                    @Html.Raw(@Model.MedicalHistoryTreatments.ElementAt(i).Treatments.Description)
+                                </td>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryTreatments.ElementAt(i).Physicians.Name)
+                                </td>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryTreatments.ElementAt(i).Treatments.IsSuspended)
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    <br />
+                    <a asp-controller="Treatment" asp-action="CreateForHistory" asp-route-id="@Model.UserId" class="btn btn-info btn-sm text-success">
+                        <i class="bi bi-plus-circle"></i>
+                        &nbsp; Add new treatment
+                    </a>
+                    <br /><br />
+                </div>
+                <br /><br /><br /><br />
+                <label class="form-label text-black">Sufferings</label>
+                <br /><br />
+                <div class="text-info">
+                    @for (int i = 0; i < @Model.MedicalHistorySufferings.Count(); i++)
+                    {
+                        <table class="table table-stripped table-sm table-info text-info" style="width=100%">
+                            <thead class="text-dark">
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        Description
+                                    </td>
+                                    <td>
+                                        Physician name
+                                    </td>
+                                    <td>
+                                        Is Suspend
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistorySufferings.ElementAt(i).Sufferings.Name)
+                                </td>
+                                <td width=25%>
+                                    @Html.Raw(@Model.MedicalHistorySufferings.ElementAt(i).Sufferings.Description)
+                                </td>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistorySufferings.ElementAt(i).Physicians.Name)
+                                </td>
+                                <td width=25%>
+                                    @Html.DisplayFor(it => it.MedicalHistorySufferings.ElementAt(i).Sufferings.IsSuspended)
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    <br />
+                    <a asp-controller="Suffering" asp-action="CreateForHistory" asp-route-id="@Model.UserId" class="btn btn-info btn-sm text-success">
+                        <i class="bi bi-plus-circle"></i>
+                        &nbsp; Add new suffering
+                    </a>
+                    <br /><br />
+                </div>
+                <br /><br /><br /><br />
+                <label class="form-label text-black">Medicines</label>
+                <br /><br />
+                <div class="text-info">
+                    @for (int i = 0; i < @Model.MedicalHistoryMedicines.Count(); i++)
+                    {
+                        <table class="table table-stripped table-sm table-info text-info" style="width=100%">
+                            <thead class="text-dark">
+                                <tr>
+                                    <td>
+                                        Name
+                                    </td>
+                                    <td>
+                                        Physician
+                                    </td>
+                                    
+                                    <td>
+                                        Is Suspend
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td width=30%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryMedicines.ElementAt(i).Medicines.Name)
+                                </td>
+                                <td width=30%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryMedicines.ElementAt(i).Physicians.Name)
+                                </td>
+                                <td width=30%>
+                                    @Html.DisplayFor(it => it.MedicalHistoryMedicines.ElementAt(i).Medicines.IsSuspended)
+                                </td>
+
+                            </tr>
+                        </table>
+                    }
+                    <br />
+                    <a asp-controller="Medicine" asp-action="CreateForHistory" asp-route-id="@Model.UserId" class="btn btn-info btn-sm text-success">
+                        <i class="bi bi-plus-circle"></i>
+                        &nbsp; Add new medicine
+                    </a>
+                    <br /><br />
+                </div>
+                <br /><br /><br /><br />
+                <label class="form-label text-black">Medical Notes</label>
+                <br /><br />
+                <div>
+                    @for (int i = @Model.MedicalNotes.Count() - 1; i >= 0; i--)
+                    {
+                        <table class="table table-stripped table-sm table-info text-info" style="width=100%">
+                            <thead class="text-dark">
+                                <tr>
+                                    <td>
+                                        Note
+                                    </td>
+                                    <td>
+                                        Note date
+                                    </td>
+                                    <td>
+                                        Physician name
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <td width=30%>
+                                    @Html.Raw(@Model.MedicalNotes.ElementAt(i).Note)
+                                </td>
+                                <td width=30%>
+                                    @Html.DisplayFor(it => it.MedicalNotes.ElementAt(i).NoteDate)
+                                </td>
+                                <td width=30%>
+                                    @Html.DisplayFor(it => it.MedicalNotes.ElementAt(i).Physician.Name)
+                                </td>
+                            </tr>
+                        </table>
+                    }
+                    <br />
+                    <a asp-controller="MedicalNote" asp-action="CreateForHistory" asp-route-id="@Model.UserId" class="btn btn-info btn-sm text-success">
+                        <i class="bi bi-plus-circle"></i>
+                        &nbsp; Add new medical note
+                    </a>
+                    <br /><br />
+                </div>
+                <br /><br /><br /><br />
+                <label class="form-label text-black">Medical Images</label>
+                <br /><br />
+                <div>
+                    <div class="card-group">
+                        @for (int i = 0; i < @Model.MedicalImages.Count(); i++)
+                        {
+                            <table>
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <div class="row p-2">
+                                                <div class="card border-info" style="max-width: 25rem; max-height: 30rem">
+                                                    <img class="card-img-top" src="~/@Html.DisplayFor(it => it.MedicalImages.ElementAt(i).ImageUrl)" class="card-img-top rounded" alt="Card image cap"/>
+                                                </div>
+                                                
+                                                @if (@Model.MedicalImages.ElementAt(i).PdfUrl != null)
+                                                {
+                                                    <div class="card border-info" style="max-width: 25rem; max-height: 30rem">
+                                                        <embed class="card-img-top" src="~/@Html.DisplayFor(it => it.MedicalImages.ElementAt(i).PdfUrl)" class="card-img-top rounded" alt="Card image cap" width="400px" height="400px"/>
+                                                    </div>
+                                                }
+
+                                                <br>
+                                                <div class="card-body text-info">
+                                                    <div class="pl-1">
+                                                        <h2 class="card-title h5 text-info">@Html.Raw(@Model.MedicalImages.ElementAt(i).Description)</h2>
+                                                        <br>
+                                                        <label> Physician Name: </label> @Html.DisplayFor(it => it.MedicalNotes.ElementAt(i).Physician.Name)
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        }
+                    </div>
+                    <a asp-controller="MedicalImage" asp-action="CreateForHistory" asp-route-id="@Model.UserId" class="btn btn-info btn-sm text-success">
+                        <i class="bi bi-plus-circle"></i>
+                        &nbsp; Add new medical image
+                    </a>
+                    <br /><br /><br />
+                </div>
+                <br /><br /><br />
+                <a asp-area="User" asp-action="Index" asp-controller="User" class="btn btn-primary text-info">
+                    Back to Users
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
